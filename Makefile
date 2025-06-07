@@ -16,3 +16,6 @@ build:
 down:
 	docker compose down -v
 
+backend:
+	poetry run uvicorn plimp.api.src.main:app --reload
+
