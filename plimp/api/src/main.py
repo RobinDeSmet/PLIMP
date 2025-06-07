@@ -8,6 +8,7 @@ api_router.include_router(todo.router)
 
 
 app = FastAPI()
+app.include_router(api_router)
 
 
 @app.get("/health")
