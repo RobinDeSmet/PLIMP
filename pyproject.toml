@@ -1,0 +1,31 @@
+[tool.poetry]
+name = "plimp"
+version = "0.1.0"
+description = "The personal life management platform"
+authors = ["Robin De Smet <robin_de_smet@hotmail.be>"]
+readme = "README.md"
+packages = [{ include = "plimp" }]
+
+license = "MIT"
+
+[tool.poetry.dependencies]
+python = "^3.12"
+python-dotenv = "^1.0.1"
+pyyaml = "6.0.1"
+black = "^24.10.0"
+ruff = "^0.8.4"
+pylint = "^3.2.0"
+pre-commit = "^4.0.1"
+
+
+[tool.poetry.group.dev.dependencies]
+pytest = "^8.2.0"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.pytest.ini_options]
+markers = [
+    "integration: Tests where multiple components of the package have to work together.",
+]

@@ -1,0 +1,13 @@
+services:
+  app:
+    container_name: "plimp"
+    image: "plimp:latest"
+    build:
+      context: .
+    restart: always
+    env_file:
+      - .env
+    ports:
+      - 8000:8000
+    volumes:
+      - ./data:/app/data
