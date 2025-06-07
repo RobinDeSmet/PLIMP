@@ -1,12 +1,14 @@
 repos:
-  - repo: https://github.com/psf/black
-    rev: 24.10.0
-    hooks:
-      - id: black
-        args: ["."]
   - repo: https://github.com/astral-sh/ruff-pre-commit
     rev: v0.8.4
     hooks:
       # Run the linter.
       - id: ruff
         args: [ --fix ]
+  - repo: local
+    hooks:
+      - id: pytest
+        name: unit tests
+        entry: poetry run pytest -s -v
+        language: system
+        pass_filenames: false
