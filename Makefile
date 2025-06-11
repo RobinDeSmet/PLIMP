@@ -18,4 +18,3 @@ down:
 
 backend:
 	poetry run uvicorn plimp.api.src.main:app --reload
-
