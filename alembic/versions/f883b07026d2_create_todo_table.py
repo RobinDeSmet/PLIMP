@@ -18,11 +18,6 @@ depends_on: Union[str, Sequence[str], None] = None
 
 
 def upgrade() -> None:
-    # category_enum = postgresql.ENUM(CategoryEnum, name="categoryenum")
-    # category_enum.create(
-    #     op.get_bind(), checkfirst=True
-    # )  # ✅ This avoids "already exists"
-
     op.create_table(
         "todo",
         sa.Column("id", sa.Integer, primary_key=True),

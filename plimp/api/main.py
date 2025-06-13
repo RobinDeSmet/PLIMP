@@ -1,6 +1,6 @@
 from fastapi import APIRouter, FastAPI
 
-from plimp.api.src.todo import todo
+from plimp.api.routes import todo
 
 
 api_router = APIRouter()
