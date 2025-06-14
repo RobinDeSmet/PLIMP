@@ -3,7 +3,6 @@ from pydantic import BaseModel, Field, field_validator
 from typing import Optional
 
 
-# Shared base class
 class TodoBase(BaseModel):
     content: str = Field(..., example="Buy groceries")
     progress: int = Field(..., ge=0, le=100, example=50)
@@ -25,12 +24,10 @@ class TodoBase(BaseModel):
         return v
 
 
-# For creating a new todo
 class TodoCreate(TodoBase):
     pass
 
 
-# For updating an existing todo
 class TodoUpdate(BaseModel):
     content: Optional[str] = None
     progress: Optional[int] = Field(None, ge=0, le=100)
