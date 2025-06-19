@@ -9,13 +9,6 @@ class TodoBase(BaseModel):
     due_date: Optional[date] = Field(None, example="2025-06-30")
     category: str = Field(..., example="Personal")
 
-    @field_validator("due_date")
-    @classmethod
-    def validate_due_date(cls, v):
-        if v and v < date.today():
-            raise ValueError("Due date cannot be in the past!")
-        return v
-
     @field_validator("progress")
     @classmethod
     def validate_progress(cls, v):
@@ -25,7 +18,12 @@ class TodoBase(BaseModel):
 
 
 class TodoCreate(TodoBase):
-    pass
+    @field_validator("due_date")
+    @classmethod
+    def validate_due_date(cls, v):
+        if v and v < date.today():
+            raise ValueError("Due date cannot be in the past!")
+        return v
 
 
 class TodoUpdate(BaseModel):
@@ -33,6 +31,13 @@ class TodoUpdate(BaseModel):
     progress: Optional[int] = Field(None, ge=0, le=100)
     due_date: Optional[date] = None
     category: Optional[str] = None
+
+    @field_validator("due_date")
+    @classmethod
+    def validate_due_date(cls, v):
+        if v and v < date.today():
+            raise ValueError("Due date cannot be in the past!")
+        return v
 
 
 class TodoRead(TodoBase):
