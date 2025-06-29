@@ -29,6 +29,7 @@ RUN poetry --version
 FROM base AS build
 COPY pyproject.toml poetry.lock ${HOME}
 COPY . ${HOME}
+RUN poetry env use ${PYTHON_VERSION}
 RUN poetry install --no-root --only main && rm -rf ${POETRY_CACHE_DIR}
 
 # Set the .env files
@@ -44,4 +45,4 @@ USER appuser
 
 EXPOSE 8000
 
-CMD poetry run python -m plimp
+# CMD poetry run python -m plimp
