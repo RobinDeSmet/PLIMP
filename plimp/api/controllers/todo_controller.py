@@ -3,7 +3,7 @@ from sqlalchemy.orm import Session
 from plimp.api.database.models import Todo
 from plimp.api.schemas.todo import TodoCreate, TodoUpdate
 from plimp.api.utils.exceptions import TodoNotFound
-from plimp.api.utils.logger import logger
+from plimp.utils.logger import logger
 
 
 def create(db: Session, todo_in: TodoCreate) -> Todo:
