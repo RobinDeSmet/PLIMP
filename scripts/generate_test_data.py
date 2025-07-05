@@ -12,7 +12,7 @@ def generate_test_todos():
             content="Buy groceries",
             progress=0,
             due_date=date.today() + timedelta(days=1),
-            category="Personal",
+            category="Home",
         ),
         TodoCreate(
             content="Finish project report",
@@ -30,13 +30,13 @@ def generate_test_todos():
             content="Plan vacation",
             progress=10,
             due_date=date.today() + timedelta(days=10),
-            category="Leisure",
+            category="Hobby",
         ),
         TodoCreate(
             content="Read book",
             progress=80,
             due_date=date.today() + timedelta(days=5),
-            category="Personal",
+            category="Hobby",
         ),
         TodoCreate(
             content="Pay electricity bill",
@@ -60,19 +60,19 @@ def generate_test_todos():
             content="Write blog post",
             progress=40,
             due_date=date.today() + timedelta(days=6),
-            category="Writing",
+            category="Hobby",
         ),
         TodoCreate(
             content="Organize photo album",
             progress=60,
             due_date=date.today() + timedelta(days=8),
-            category="Personal",
+            category="Hobby",
         ),
         TodoCreate(
             content="Back up laptop",
             progress=90,
             due_date=date.today() + timedelta(days=1),
-            category="Tech",
+            category="Work",
         ),
         TodoCreate(
             content="Submit tax documents",
@@ -84,7 +84,7 @@ def generate_test_todos():
             content="Research new phone",
             progress=10,
             due_date=date.today() + timedelta(days=9),
-            category="Shopping",
+            category="Finance",
         ),
         TodoCreate(
             content="Water garden",
@@ -96,7 +96,7 @@ def generate_test_todos():
             content="Update LinkedIn profile",
             progress=75,
             due_date=date.today() + timedelta(days=5),
-            category="Career",
+            category="Work",
         ),
     ]
 
