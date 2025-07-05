@@ -29,10 +29,6 @@ class GeminiAssistant:
         self.tools_mapping = tools_mapping
         logger.info(f"Initialized Gemini Assistant with model: {model_name}")
 
-    # helper function to call the function
-    def _call_function(self, function_name, **kwargs):
-        return self.tools_mapping[function_name](**kwargs)
-
     def ask(self, user_input: str) -> str:
         try:
             logger.info(f"Sending message to Gemini Assistant: {user_input}")
@@ -47,13 +43,12 @@ class GeminiAssistant:
                     function_call = part.function_call
 
                     # Call the tool with arguments
-                    logger.info(
-                        f"Calling tool: {function_call.name} with args: {function_call.args}"
-                    )
+                    logger.info(f"Calling tool: {function_call.name}")
                     tool_result = self._call_function(
                         function_call.name, **function_call.args
                     )
 
+                    # Send the tool result back to the assistant
                     response = self.chat.send_message(f"The tool result: {tool_result}")
                     answer = response.text
                     logger.info(f"Received response from Gemini Assistant: {answer}")
@@ -66,6 +61,9 @@ class GeminiAssistant:
             raise AssistantConversationError(
                 "Error occurred while talking to the assistant."
             ) from exc
+
+    def _call_function(self, function_name, **kwargs):
+        return self.tools_mapping[function_name](**kwargs)
 
     def _get_history(self) -> List[Dict[str, str]]:
         """Returns the full conversation history as a list of message dicts."""
