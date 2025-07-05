@@ -5,7 +5,7 @@ from typing import Optional
 
 class TodoBase(BaseModel):
     content: str = Field(..., example="Buy groceries")
-    progress: int = Field(..., ge=0, le=100, example=50)
+    progress: Optional[int] = Field(ge=0, le=100, example=50, default=0)
     due_date: Optional[date] = Field(None, example="2025-06-30")
     category: str = Field(..., example="Personal")
 
