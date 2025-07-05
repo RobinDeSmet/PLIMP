@@ -3,6 +3,7 @@ import google.generativeai as genai
 from typing import Callable, List, Dict
 from plimp.assistant.prompts import SYSTEM_PROMPT
 from plimp.assistant.exceptions import AssistantConversationError
+from plimp.assistant.tools.todo_tools import get_todo_info_tool
 from plimp.utils.logger import logger
 
 
@@ -80,15 +81,24 @@ if __name__ == "__main__":
     # It includes an example tool and demonstrates how to use the assistant.
     # The assistant can be extended with more tools and functionality as needed.
     # Example query:
-    # Is it possible to create a todo item with these parameters? content = Clean, category=Work, due_date=05/07/2025?
+    # 1. Create a todo item:
+    #   Is it possible to create a todo item with these parameters? content = Clean, category=Work, due_date=05/07/2025?
+    #
+    # 2. Get info on todo items:
+    #   Can you give me an overview of my home todo items?
+    #   Which todo items have highest priority?
+    #   What todo item should I focus on today?
     from dotenv import load_dotenv
     from plimp.assistant.tools.todo_tools import create_todo_tool
 
     load_dotenv()
-    tools_mapping = {"create_todo_tool": create_todo_tool}
+    tools_mapping = {
+        "create_todo_tool": create_todo_tool,
+        "get_todo_info_tool": get_todo_info_tool,
+    }
     assistant = GeminiAssistant(
         api_key=os.getenv("GEMINI_API_KEY"),
-        tools=[create_todo_tool],
+        tools=[create_todo_tool, get_todo_info_tool],
         tools_mapping=tools_mapping,
     )
 

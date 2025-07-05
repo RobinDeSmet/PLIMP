@@ -11,3 +11,9 @@ class Todo(Base):
     progress: Mapped[int] = mapped_column(Integer, nullable=False)
     due_date: Mapped[Date | None] = mapped_column(Date, nullable=True)
     category: Mapped[str] = mapped_column(String, nullable=False)
+
+    def __repr__(self) -> str:
+        return (
+            f"<Todo(id={self.id}, content='{self.content}', progress={self.progress}, "
+            f"due_date={self.due_date}, category='{self.category}')>"
+        )
